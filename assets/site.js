@@ -3,7 +3,7 @@ const btn=document.querySelector('.menu-btn'),nav=document.querySelector('.nav')
 btn&&btn.addEventListener('click',()=>{const o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
 nav&&nav.addEventListener('click',e=>{if(e.target.tagName==='A')nav.classList.remove('open')});
 const lb=document.querySelector('.lb'),lbImg=lb&&lb.querySelector('img');let list=[],i=0;
-const show=n=>{i=(n+list.length)%list.length;lbImg.src=list[i].src;lbImg.alt=list[i].alt};
+const show=n=>{i=(n+list.length)%list.length;lbImg.src=list[i].dataset.full||list[i].src;lbImg.alt=list[i].alt};
 document.querySelectorAll('.gallery').forEach(g=>g.addEventListener('click',e=>{const img=e.target.closest('figure')?.querySelector('img');if(!img)return;
 list=[...g.querySelectorAll('figure:not([hidden]) img')];show(list.indexOf(img));lb.classList.add('open')}));
 if(lb){lb.querySelector('.x').onclick=()=>lb.classList.remove('open');lb.querySelector('.prev').onclick=()=>show(i-1);lb.querySelector('.next').onclick=()=>show(i+1);
